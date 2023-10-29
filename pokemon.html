@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Pokémon</title>
+</head>
+
+<body>
+    <audio id="miSonido">
+        <source src="" type="audio/wav">
+        Tu navegador no admite la reproducción de audio.
+    </audio>
+
+    <div class="contenedorImg">
+        <p class="pokemon-id-back2"></p>
+        <img id="imgPokemon" src="" alt="" />
+    </div>
+
+    <div class="pokemon-info">
+        <h3 id="descripcion"></h3>
+        <div class="nombre-contenedor">
+            <p class="pokemon-id"></p>
+            <h2 class="pokemon-nombre"></h2>
+        </div>
+        <div class="pokemon-tipos">
+        </div>
+        <div class="pokemon-stats">
+            <p class="stat"></p>
+            <p class="stat"></p>
+        </div>
+        <div id="radar">
+            <canvas id="myRadarChart"></canvas>
+        </div>
+
+        <div id="mostrarPokemon">
+            <div class="verAnteriorPosterior" id="verAnterior">
+                <img src="" alt="" id="imagen-anterior" class="imagen-icono">
+                <a id="pokemonAnterior"></a>
+            </div>
+            <div class="verAnteriorPosterior" id="verPosterior">
+                <img src="" alt="" id="imagen-posterior" class="imagen-icono">
+                <a id="pokemonPosterior"></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/pokemon.js"></script>
+</body>
+
+</html>

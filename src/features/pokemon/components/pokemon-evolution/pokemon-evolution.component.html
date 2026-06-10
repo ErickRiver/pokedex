@@ -1,0 +1,9 @@
+<section class="pokemon-evolution">  
+  @if (evolutionTree.length > 0) {
+    @for (tree of evolutionTree; track tree) {
+      <p class="pokemon-evolution__item">{{ tree }}</p>
+    }
+  } @else {
+    <p class="pokemon-evolution__empty">{{ 'pokemon.evolution.empty' | translate }}</p>
+  }
+</section>

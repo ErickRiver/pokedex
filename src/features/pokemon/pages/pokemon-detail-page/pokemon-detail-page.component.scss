@@ -1,0 +1,289 @@
+.pokemon-detail-page {
+  
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pokemon-detail-page__status {
+  color: var(--detail-text-secondary);
+}
+
+.pokemon-detail-page__container {
+  position: relative;
+  width: 85%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+}
+
+.pokemon-detail-page__header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 10vh;
+}
+
+.pokemon-detail-page__id {
+  font-size: 18px;
+  color: var(--detail-text-secondary);
+  font-weight: 500;
+  position: relative;
+}
+
+.pokemon-detail-page__name-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.pokemon-detail-page__name {
+  font-size: 20px;
+  color: var(--detail-text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.pokemon-detail-page__name_japanese {
+  width: fit-content;
+  font-size: 108px;
+  color: var(--detail-text-primary);
+  position: relative;
+  left: 4vh;
+}
+
+.pokemon-detail-page__info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16%;
+  position: relative;
+  bottom: 10vh;
+}
+
+.pokemon-detail-page__info-items {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 12vh;
+  left: 4vh;
+  gap: 0.5rem;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.pokemon-detail-page__info-item {
+  color: var(--detail-text-secondary);
+}
+
+.pokemon-detail-page__image {
+  height: 62vh;
+  object-fit: cover;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.pokemon-detail-page__image--pop {
+  animation: click-scale 200ms ease;
+}
+
+@keyframes click-scale {
+  0% {
+    transform: translate(0px);
+  }
+
+  25% {
+    transform: scale(1.55);
+    transform: translate(0px, 10px);
+  }
+
+  75% {
+    transform: translate(10px);
+  }
+
+  85% {
+    transform: translate(-20px);
+  }
+
+  95% {
+    transform: translate(0px);
+  }
+
+  100% {
+    transform: scale(1.08);
+  }
+}
+
+/* Tabs */
+.pokemon-detail-page__tabs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.pokemon-detail-page__tabs-list {
+  display: flex;
+  gap: 2rem;
+}
+
+.pokemon-detail-page__tabs-list-item {
+  width: 100%;
+  cursor: pointer;
+  color: var(--detail-text-primary);
+  font-size: 16px;
+
+  &:hover {
+    color: var(--detail-text-secondary);
+  }
+}
+
+.pokemon-detail-page__tabs-list-item.active {
+  color: var(--detail-text-secondary);
+  font-weight: 600;
+}
+
+.pokemon-detail-page__tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 60vh;
+  width: 100%;
+}
+
+.pokemon-detail-page__tab-content-versions-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.pokemon-detail-page__tab-content-versions {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: 1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.pokemon-detail-page__tab-content-versions-item {
+  cursor: pointer;
+  color: var(--detail-text-primary);
+  font-size: 16px;
+  width: fit-content;
+  text-transform: uppercase;
+  text-wrap: nowrap;
+
+  &:hover {
+    color: var(--detail-text-secondary);
+  }
+}
+
+.pokemon-detail-page__tab-content-versions-item.active {
+  color: var(--detail-text-secondary);
+  font-weight: 600;
+}
+
+.pokemon-detail-page__tab-content-versions-item--region {
+  color: var(--detail-text-primary);
+}
+
+.pokemon-detail-page__tab-content-versions-previous,
+.pokemon-detail-page__tab-content-versions-next {
+  flex-shrink: 0;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--detail-text-primary);
+  font-size: 16px;
+  line-height: 1;
+
+  &:hover {
+    color: var(--detail-text-secondary);
+  }
+}
+
+.pokemon-detail-page__tab-content-description {
+  font-size: 22px;
+  color: var(--detail-text-secondary);
+  font-weight: 400;
+}
+
+/* ID Pokedex Scroll */
+.pokemon-detail-page__scroll-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  gap: 0.75rem;
+
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translateY(-50%);
+}
+
+.pokemon-detail-page__scroll-button {
+  border: none;
+  background: none;
+  color: var(--detail-text-primary);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--detail-text-secondary);
+  }
+}
+
+.pokemon-detail-page__id-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  width: fit-content;
+  min-width: 4.5rem;
+  height: 50vh;
+  max-height: 50vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-block: 35vh;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.pokemon-detail-page__id-scroll-item {
+  flex-shrink: 0;
+  margin: 0;
+  color: var(--detail-text-primary);
+  font-size: 12px;
+  line-height: 1.2;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--detail-text-secondary);
+  }
+}
+
+.pokemon-detail-page__id-scroll-item.active {
+  color: var(--detail-text-secondary);
+  font-weight: 600;
+}

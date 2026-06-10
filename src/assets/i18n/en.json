@@ -1,0 +1,93 @@
+{
+  "app": {
+    "title": "Pokédex"
+  },
+  "nav": {
+    "pokemon": "Pokémon",
+    "favorites": "Favorites"
+  },
+  "common": {
+    "back": "Back"
+  },
+  "pokemon": {
+    "detail": {
+      "unknown": "Unknown Pokémon",
+      "error": "Failed to load Pokémon. Please try again."
+    },
+    "list": {
+      "title": "Pokémon",
+      "empty": "No Pokémon to display yet.",
+      "loading": "Loading Pokémon…",
+      "error": "Failed to load Pokémon. Please try again."
+    },
+    "region": {
+      "title": "Region",
+      "empty": "No region available."
+    },    
+    "search": {
+      "label": "Search Pokémon",
+      "placeholder": "Name or Pokédex number",
+      "submit": "Search"
+    },
+    "types": {
+      "normal": "Normal",
+      "fire": "Fire",
+      "water": "Water",
+      "grass": "Grass",
+      "electric": "Electric",
+      "ice": "Ice",
+      "fighting": "Fighting",
+      "poison": "Poison",
+      "ground": "Ground",
+      "flying": "Flying",
+      "psychic": "Psychic",
+      "bug": "Bug",
+      "rock": "Rock",
+      "ghost": "Ghost",
+      "dark": "Dark",
+      "dragon": "Dragon",
+      "steel": "Steel",
+      "fairy": "Fairy"
+    },
+    "stats": {
+      "title": "Stats",
+      "empty": "No stats available.",
+      "hp": "HP",
+      "attack": "ATK",
+      "defense": "DEF",
+      "special-attack": "Sp. Atk",
+      "special-defense": "Sp. Def",
+      "speed": "SPD"
+    },
+    "about": {
+      "title": "About",
+      "height": "Height",
+      "weight": "Weight",
+      "experience": "Base experience",
+      "empty": "No information available."
+    },
+    "evolution": {
+      "title": "Evolution",
+      "empty": "No evolution data available."
+    }    
+  }, 
+  "favorites": {
+    "add": "Add to favorites",
+    "remove": "Remove from favorites",
+    "toggle": "Toggle favorite",
+    "list": {
+      "title": "Favorite Pokémon",
+      "empty": "You have no favorite Pokémon yet."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "open": "Open settings",
+    "theme": "Theme",
+    "theme_light": "Light",
+    "theme_dark": "Dark",
+    "language": "Language",
+    "language_en": "English",
+    "language_es": "Spanish"
+  }
+}

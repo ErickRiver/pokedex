@@ -1,0 +1,10 @@
+<section class="favorites-list-page">
+  <h1>{{ 'favorites.list.title' | translate }}</h1>
+  <div class="favorites-list-page__grid">
+    @for (pokemon of favoritePokemon; track pokemon.id) {
+      <app-pokemon-card [pokemon]="pokemon" />
+    } @empty {
+      <p>{{ 'favorites.list.empty' | translate }}</p>
+    }
+  </div>
+</section>

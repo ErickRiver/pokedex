@@ -1,0 +1,16 @@
+.pokemon-stats__chart {
+  position: relative;
+  width: 100%;
+  max-width: 22rem;
+  margin-inline: auto;
+  aspect-ratio: 1;
+}
+
+.pokemon-stats__chart canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.pokemon-stats__empty {
+  color: var(--clr-gray, #6b7280);
+}

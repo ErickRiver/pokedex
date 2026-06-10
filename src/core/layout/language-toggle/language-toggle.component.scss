@@ -1,0 +1,21 @@
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.language-toggle__icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.language-toggle__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+}

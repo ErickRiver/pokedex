@@ -1,0 +1,10 @@
+.pokemon-about__list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+}
+
+.pokemon-about__description {
+  margin-top: 0.75rem;
+  color: var(--color-text-muted);
+}

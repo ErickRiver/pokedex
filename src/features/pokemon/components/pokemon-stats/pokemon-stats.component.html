@@ -1,0 +1,7 @@
+@if (stats().length) {
+<div class="pokemon-stats__chart">
+  <canvas #radarCanvas aria-label="Base stats radar chart"></canvas>
+</div>
+} @else {
+<p class="pokemon-stats__empty">{{ 'pokemon.stats.empty' | translate }}</p>
+}

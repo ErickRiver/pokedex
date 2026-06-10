@@ -1,0 +1,12 @@
+<button
+  type="button"
+  class="theme-toggle"
+  [attr.aria-label]="'settings.theme' | translate"
+  (click)="toggleTheme()"
+>
+  @if (currentTheme() === 'light') {
+  <i class="fa-solid fa-sun theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"></i>
+  } @else {
+  <i class="fa-solid fa-moon theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"></i>
+  }
+</button>

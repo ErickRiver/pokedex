@@ -1,0 +1,93 @@
+{
+  "app": {
+    "title": "Pokédex"
+  },
+  "nav": {
+    "pokemon": "Pokémon",
+    "favorites": "Favoritos"
+  },
+  "common": {
+    "back": "Volver"
+  },
+  "pokemon": {
+    "detail": {
+      "unknown": "Pokémon desconocido",
+      "error": "No se pudo cargar el Pokémon. Inténtelo de nuevo."
+    },
+    "list": {
+      "title": "Pokémon",
+      "empty": "Aún no hay Pokémon para mostrar.",
+      "loading": "Cargando Pokémon…",
+      "error": "No se pudieron cargar los Pokémon. Inténtelo de nuevo."
+    },
+    "region": {
+      "title": "Región",
+      "empty": "No hay región disponible."
+    },  
+    "search": {
+      "label": "Buscar Pokémon",
+      "placeholder": "Nombre o número de Pokédex",
+      "submit": "Buscar"   
+    },
+    "types": {
+      "normal": "Normal",
+      "fire": "Fuego",
+      "water": "Agua",
+      "grass": "Planta",
+      "electric": "Eléctrico",
+      "ice": "Hielo",
+      "fighting": "Lucha",
+      "poison": "Veneno",
+      "ground": "Tierra",
+      "flying": "Volador",
+      "psychic": "Psíquico",
+      "bug": "Bicho",
+      "rock": "Roca",
+      "ghost": "Fantasma",
+      "dark": "Oscuro",
+      "dragon": "Dragón",
+      "steel": "Acero",
+      "fairy": "Hada"
+    },
+    "stats": {
+      "title": "Estadísticas",
+      "empty": "No hay estadísticas disponibles.",
+      "hp": "PS",
+      "attack": "ATQ",
+      "defense": "DEF",
+      "special-attack": "At. Esp.",
+      "special-defense": "Def. Esp.",
+      "speed": "VEL"
+    },
+    "about": {
+      "title": "Información",
+      "height": "Altura",
+      "weight": "Peso",
+      "experience": "Experiencia base",
+      "empty": "No hay información disponible."
+    },
+    "evolution": {
+      "title": "Evoluciones",
+      "empty": "No hay datos de evolución disponibles."
+    }    
+  },
+  "favorites": {
+    "add": "Añadir a favoritos",
+    "remove": "Quitar de favoritos",
+    "toggle": "Alternar favorito",
+    "list": {
+      "title": "Pokémon favoritos",
+      "empty": "Aún no tienes Pokémon favoritos."
+    }
+  },
+  "settings": {
+    "title": "Ajustes",
+    "open": "Abrir ajustes",
+    "theme": "Tema",
+    "theme_light": "Claro",
+    "theme_dark": "Oscuro",
+    "language": "Idioma",
+    "language_en": "Inglés",
+    "language_es": "Español"
+  }
+}

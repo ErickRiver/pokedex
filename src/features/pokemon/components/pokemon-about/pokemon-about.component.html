@@ -1,0 +1,18 @@
+<section class="pokemon-about">
+  <h2>{{ 'pokemon.about.title' | translate }}</h2>
+  @if (about(); as data) {
+    <dl class="pokemon-about__list">
+      <dt>{{ 'pokemon.about.height' | translate }}</dt>
+      <dd>{{ data.height }}</dd>
+      <dt>{{ 'pokemon.about.weight' | translate }}</dt>
+      <dd>{{ data.weight }}</dd>
+      <dt>{{ 'pokemon.about.experience' | translate }}</dt>
+      <dd>{{ data.baseExperience }}</dd>
+    </dl>
+    @if (data.description) {
+      <p class="pokemon-about__description">{{ data.description }}</p>
+    }
+  } @else {
+    <p>{{ 'pokemon.about.empty' | translate }}</p>
+  }
+</section>

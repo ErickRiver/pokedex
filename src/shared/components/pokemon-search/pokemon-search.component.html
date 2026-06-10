@@ -1,0 +1,14 @@
+<form class="pokemon-search" (ngSubmit)="onSearch()">  
+  <input
+    id="pokemon-search-input"
+    type="search"
+    class="pokemon-search__input"
+    [(ngModel)]="query"
+    name="query"
+    [placeholder]="placeholderKey() | translate"
+    autocomplete="off"
+  />
+  <button type="submit" class="pokemon-search__button">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+</form>

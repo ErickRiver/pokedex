@@ -1,0 +1,97 @@
+<section class="pokemon-detail-page" [class.pokemon-detail-page--themed]="primaryType()" [ngClass]="detailTypeClass()"
+  [style]="detailTextStyle()">
+  @if (loading()) {
+  <app-loading-state />
+  } @else if (error()) {
+  <app-empty-state [error]="errorMessage()" />
+  } @else if (pokemon(); as p) {
+  <div class="pokemon-detail-page__container">
+
+    <div>
+      <div class="pokemon-detail-page__header">
+        <p class="pokemon-detail-page__id">{{ p.id | pokemonId }}</p>
+
+        <div class="pokemon-detail-page__name-container">
+          <p class="pokemon-detail-page__name">{{ p.name }}</p>
+          <app-favorite-toggle [pokemonId]="p.id" [type]="primaryType()" />
+          <app-pokemon-types [types]="p.types" />
+        </div>
+        <h2 class="pokemon-detail-page__name_japanese">{{ japaneseName() }}</h2>
+      </div>
+
+      <div class="pokemon-detail-page__info">
+        <div class="pokemon-detail-page__info-items">
+          <p class="pokemon-detail-page__info-item">
+            {{ 'pokemon.about.height' | translate }}: {{ p.height | pokemonHeight }}
+          </p>
+          <p class="pokemon-detail-page__info-item">
+            {{ 'pokemon.about.weight' | translate }}: {{ p.weight | pokemonWeight }}
+          </p>
+        </div>
+        <img #pokemonImage class="pokemon-detail-page__image" [src]="imageUrl()" [alt]="displayName()" appImgFallback
+          (click)="playSound()" />
+      </div>
+    </div>
+
+    <div class="pokemon-detail-page__tabs">
+      <ul class="pokemon-detail-page__tabs-list">
+        <li class="pokemon-detail-page__tabs-list-item" [class.active]="tab() === 'about'" (click)="setTab('about')">
+          {{ 'pokemon.about.title' | translate }}</li>
+        <li class="pokemon-detail-page__tabs-list-item" [class.active]="tab() === 'stats'" (click)="setTab('stats')">
+          {{ 'pokemon.stats.title' | translate }}</li>
+        <li class="pokemon-detail-page__tabs-list-item" [class.active]="tab() === 'evolution'"
+          (click)="setTab('evolution')">{{ 'pokemon.evolution.title' | translate }}</li>
+      </ul>
+
+      @if (tab() === 'about') {
+      <section class="pokemon-detail-page__tab-content">
+        @if (versionDescriptions().length) {
+        <div class="pokemon-detail-page__tab-content-versions-nav">
+          <button type="button" class="pokemon-detail-page__tab-content-versions-previous" (click)="scrollVersions(-1)"
+            aria-label="Scroll versions left"><i class="fa-solid fa-chevron-left"></i></button>
+          <div #versionsScroll class="pokemon-detail-page__tab-content-versions">
+            @for (version of versionDescriptions(); track version.version) {
+            <p class="pokemon-detail-page__tab-content-versions-item"
+              [class.active]="selectedVersion()?.flavor_text === version.flavor_text || (!selectedVersion()?.flavor_text && $first)"
+              (click)="setVersionDescription(version.version, version.flavor_text)">{{ version.version }}</p>
+            }
+          </div>
+          <button type="button" class="pokemon-detail-page__tab-content-versions-next" (click)="scrollVersions(1)"
+            aria-label="Scroll versions right"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <p class="pokemon-detail-page__tab-content-description">{{ versionDescription() }}</p>
+        <p class="pokemon-detail-page__tab-content-versions-item--region">{{ 'pokemon.region.title' | translate }}: {{
+          generation() }}</p>
+        } @else {
+        <p class="pokemon-detail-page__tab-content-versions-item">{{ 'pokemon.about.empty' | translate }}</p>
+        }
+      </section>
+      } @else if (tab() === 'evolution') {
+      <section class="pokemon-detail-page__tab-content">
+        <app-pokemon-evolution [evolutionChain]="evolutionChain()" />
+      </section>
+      } @else if (tab() === 'stats') {
+      <section class="pokemon-detail-page__tab-content">
+        <app-pokemon-stats [stats]="pokemonStats()" [textPrimary]="detailTheme().textPrimary"
+          [textSecondary]="detailTheme().textSecondary" />
+      </section>
+      }
+    </div>
+  </div>
+
+  <div class="pokemon-detail-page__scroll-container">
+    <button type="button" class="pokemon-detail-page__scroll-button" (click)="scrollId(-1)" aria-label="Scroll id up"><i
+        class="fa-solid fa-chevron-up"></i></button>
+    <div #idScroll class="pokemon-detail-page__id-scroll">
+      @for (id of visiblePokedexIds(); track id) {
+      <p class="pokemon-detail-page__id-scroll-item" [class.active]="id === p.id" (click)="navigateToId(id)">
+        {{ id }}
+      </p>
+      }
+    </div>
+    <button type="button" class="pokemon-detail-page__scroll-button" (click)="scrollId(1)"
+      aria-label="Scroll id down"><i class="fa-solid fa-chevron-down"></i></button>
+  </div>
+  }
+</section>

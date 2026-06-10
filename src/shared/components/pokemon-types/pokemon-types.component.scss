@@ -1,0 +1,117 @@
+.pokemon-types {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 11px;
+  font-weight: 500;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.pokemon-types__item {
+  padding: 0.25rem 0.5rem;
+  border-radius: 100vmax;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-width: 60px;
+}
+
+.pokemon-types__type-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.pokemon-types__item--normal {
+  background-color: var(--type-normal);
+  color: var(--clr-black);
+}
+
+.pokemon-types__item--fire {
+  background-color: var(--type-fire);
+  color: var(--clr-black);
+}
+
+.pokemon-types__item--water {
+  background-color: var(--type-water);
+  color: var(--clr-white);
+}
+
+.pokemon-types__item--grass {
+  background-color: var(--type-grass);
+  color: var(--clr-white);
+}
+
+.pokemon-types__item--electric {
+  background-color: var(--type-electric);
+  color: var(--clr-black);
+}
+
+.pokemon-types__item--ice {
+  background-color: var(--type-ice);
+  color: var(--clr-white);
+}
+
+.pokemon-types__item--fighting {
+  background-color: var(--type-fighting);
+  color: var(--clr-white);
+}
+
+.pokemon-types__item--poison {
+  background-color: var(--type-poison);
+  color: var(--clr-white);
+}
+
+.pokemon-types__item--ground {
+  background-color: var(--type-ground);
+  color: var(--clr-black);
+}
+
+.pokemon-types__item--flying {
+  background-color: var(--type-flying);
+  color: var(--clr-white);
+}
+
+.pokemon-types__item--psychic {
+  background-color: var(--type-psychic);
+  color: var(--clr-white);
+}
+
+.pokemon-types__item--bug {
+  background-color: var(--type-bug);
+  color: var(--clr-black);
+}
+
+.pokemon-types__item--rock {
+  background-color: var(--type-rock);
+  color: var(--clr-black);
+}
+
+.pokemon-types__item--ghost {
+  background-color: var(--type-ghost);
+  color: var(--clr-white);
+}
+
+.pokemon-types__item--dark {
+  background-color: var(--type-dark);
+  color: var(--clr-white);
+}
+
+.pokemon-types__item--dragon {
+  background-color: var(--type-dragon);
+  color: var(--clr-white);
+}
+
+.pokemon-types__item--steel {
+  background-color: var(--type-steel);
+  color: var(--clr-black);
+}
+
+.pokemon-types__item--fairy {
+  background-color: var(--type-fairy);
+  color: var(--clr-black);
+}

@@ -1,0 +1,11 @@
+<div
+  class="app-layout"
+  [style.background]="layoutBackground()"
+  [class.app-layout--themed]="typeTheme.primaryType()"
+>
+  <span class="app-layout__i18n-sync" hidden aria-hidden="true">{{ i18nRevision() }}</span>
+  <app-navbar />
+  <main class="app-layout__main">
+    <router-outlet />
+  </main>
+</div>

@@ -1,0 +1,5 @@
+@if (isFavorite()) {
+<i class="fa-solid fa-star {{type()}}" (click)="toggle($event)"> </i>
+} @else {
+<i class="fa-regular fa-star {{type()}}" (click)="toggle($event)"></i>
+}

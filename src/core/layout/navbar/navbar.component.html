@@ -1,0 +1,19 @@
+<header class="navbar">
+  <a routerLink="/pokemon" class="navbar__logo">
+    <img [src]="IMAGES.logo" alt="Pokédex" width="92" />
+  </a>
+
+  <nav class="navbar__nav">
+    <a routerLink="/pokemon" routerLinkActive="navbar__link--active" class="navbar__link">
+      {{ 'nav.pokemon' | translate }}
+    </a>    
+    <a routerLink="/favorites" routerLinkActive="navbar__link--active" class="navbar__link">
+      {{ 'nav.favorites' | translate }}
+    </a>
+  </nav>
+
+  <div class="navbar__actions">    
+    <app-language-toggle />
+    <app-theme-toggle />
+  </div>
+</header>

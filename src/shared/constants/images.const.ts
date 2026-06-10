@@ -1,4 +1,9 @@
-export const ASSETS_BASE = '/assets';
+import { environment } from '../../environments/environment';
+
+const baseHref =
+  environment.baseHref === '/' ? '' : environment.baseHref.replace(/\/$/, '');
+
+export const ASSETS_BASE = `${baseHref}/assets`;
 export const ASSETS_IMAGES_BASE = `${ASSETS_BASE}/images`;
 export const ASSETS_ICONS_BASE = `${ASSETS_BASE}/icons`;
 export const ASSETS_BACKGROUNDS_BASE = `${ASSETS_BASE}/backgrounds`;

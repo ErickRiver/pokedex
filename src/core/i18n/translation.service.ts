@@ -1,7 +1,7 @@
 import { ApplicationRef, Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { StorageKeys } from '../../shared/constants';
+import { ASSETS_BASE, StorageKeys } from '../../shared/constants';
 import { AppLanguage } from '../../shared/models';
 import { StorageService } from '../storage/storage.service';
 import { DEFAULT_LANGUAGE } from './translation.token';
@@ -57,9 +57,16 @@ export class TranslationService {
     if (this.dictionaries[lang]) {
       return;
     }
+    const url = `${ASSETS_BASE}/i18n/${lang}.json`;
+    // #region agent log
+    fetch('http://127.0.0.1:7635/ingest/607b135d-9afe-4540-a1ad-97314ea5a0cd',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'47a8d0'},body:JSON.stringify({sessionId:'47a8d0',location:'translation.service.ts:loadDictionary',message:'Loading i18n dictionary',data:{url,assetsBase:ASSETS_BASE,lang},timestamp:Date.now(),hypothesisId:'A',runId:'post-fix'})}).catch(()=>{});
+    // #endregion
     const dict = await firstValueFrom(
-      this.http.get<TranslationDictionary>(`/assets/i18n/${lang}.json`),
+      this.http.get<TranslationDictionary>(url),
     );
+    // #region agent log
+    fetch('http://127.0.0.1:7635/ingest/607b135d-9afe-4540-a1ad-97314ea5a0cd',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'47a8d0'},body:JSON.stringify({sessionId:'47a8d0',location:'translation.service.ts:loadDictionary',message:'i18n dictionary loaded',data:{url,lang,keyCount:Object.keys(dict).length},timestamp:Date.now(),hypothesisId:'A',runId:'post-fix'})}).catch(()=>{});
+    // #endregion
     this.dictionaries[lang] = dict;
   }
 

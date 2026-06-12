@@ -13,6 +13,8 @@ export const IMAGES = {
   logo: `${ASSETS_IMAGES_BASE}/logos/logo.png`,
   icon_pokeball: `${ASSETS_IMAGES_BASE}/logos/pokeball.png`,
   missing_no: `${ASSETS_IMAGES_BASE}/pokemon/missing-no.png`,
+  pokeball: `${ASSETS_IMAGES_BASE}/pokemon/pokeball.png`,
+  pokeball_star: `${ASSETS_IMAGES_BASE}/pokemon/pokeball-star.png`,
 };
 
 export const GIFS = {

@@ -1,18 +1,20 @@
-<section class="pokemon-about">
-  <h2>{{ 'pokemon.about.title' | translate }}</h2>
-  @if (about(); as data) {
-    <dl class="pokemon-about__list">
-      <dt>{{ 'pokemon.about.height' | translate }}</dt>
-      <dd>{{ data.height }}</dd>
-      <dt>{{ 'pokemon.about.weight' | translate }}</dt>
-      <dd>{{ data.weight }}</dd>
-      <dt>{{ 'pokemon.about.experience' | translate }}</dt>
-      <dd>{{ data.baseExperience }}</dd>
-    </dl>
-    @if (data.description) {
-      <p class="pokemon-about__description">{{ data.description }}</p>
+@if (versionDescriptions().length) {
+<div class="pokemon-about__versions-nav">
+  <button type="button" class="pokemon-about__versions-previous" (click)="scrollVersions(-1)"
+    aria-label="Scroll versions left"><i class="fa-solid fa-chevron-left"></i></button>
+  <div #versionsScroll class="pokemon-about__versions">
+    @for (version of versionDescriptions(); track version.version) {
+    <p class="pokemon-about__versions-item"
+      [class.active]="selectedVersion()?.flavor_text === version.flavor_text || (!selectedVersion()?.flavor_text && $first)"
+      (click)="setVersionDescription(version.version, version.flavor_text)">{{ version.version }}</p>
     }
-  } @else {
-    <p>{{ 'pokemon.about.empty' | translate }}</p>
-  }
-</section>
+  </div>
+  <button type="button" class="pokemon-about__versions-next" (click)="scrollVersions(1)"
+    aria-label="Scroll versions right"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+
+<p class="pokemon-about__description">{{ versionDescription() }}</p>
+<p class="pokemon-about__region">{{ 'pokemon.region.title' | translate }}: {{ generation() }}</p>
+} @else {
+<p class="pokemon-about__versions-item">{{ 'pokemon.about.empty' | translate }}</p>
+}

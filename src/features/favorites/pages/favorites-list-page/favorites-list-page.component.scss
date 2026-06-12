@@ -1,6 +1,40 @@
-.favorites-list-page__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+.favorites-list-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 90vh;
+  margin: 0 auto;
+  padding-block: 2rem;
+  overflow: hidden;
   gap: 1rem;
-  margin-top: 1rem;
+}
+
+.favorites-list-page__search-container {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  gap: 0.5rem;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.favorites-list-page__count {
+  font-size: 14px;
+}
+
+.favorites-list-page__pokeball {
+  position: fixed;
+  bottom: -15%;
+  right: -3%;
+  width: 26%;
+  opacity: 0.7;  
+  rotate: -20deg;
+}
+
+app-pokemon-list {
+  position: relative;
+  z-index: 1;
 }

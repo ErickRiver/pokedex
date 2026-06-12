@@ -45,36 +45,16 @@
 
       @if (tab() === 'about') {
       <section class="pokemon-detail-page__tab-content">
-        @if (versionDescriptions().length) {
-        <div class="pokemon-detail-page__tab-content-versions-nav">
-          <button type="button" class="pokemon-detail-page__tab-content-versions-previous" (click)="scrollVersions(-1)"
-            aria-label="Scroll versions left"><i class="fa-solid fa-chevron-left"></i></button>
-          <div #versionsScroll class="pokemon-detail-page__tab-content-versions">
-            @for (version of versionDescriptions(); track version.version) {
-            <p class="pokemon-detail-page__tab-content-versions-item"
-              [class.active]="selectedVersion()?.flavor_text === version.flavor_text || (!selectedVersion()?.flavor_text && $first)"
-              (click)="setVersionDescription(version.version, version.flavor_text)">{{ version.version }}</p>
-            }
-          </div>
-          <button type="button" class="pokemon-detail-page__tab-content-versions-next" (click)="scrollVersions(1)"
-            aria-label="Scroll versions right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-
-        <p class="pokemon-detail-page__tab-content-description">{{ versionDescription() }}</p>
-        <p class="pokemon-detail-page__tab-content-versions-item--region">{{ 'pokemon.region.title' | translate }}: {{
-          generation() }}</p>
-        } @else {
-        <p class="pokemon-detail-page__tab-content-versions-item">{{ 'pokemon.about.empty' | translate }}</p>
-        }
-      </section>
-      } @else if (tab() === 'evolution') {
-      <section class="pokemon-detail-page__tab-content">
-        <app-pokemon-evolution [evolutionChain]="evolutionChain()" />
+        <app-pokemon-about [pokemonSpecies]="pokemonSpecies()" />
       </section>
       } @else if (tab() === 'stats') {
       <section class="pokemon-detail-page__tab-content">
         <app-pokemon-stats [stats]="pokemonStats()" [textPrimary]="detailTheme().textPrimary"
           [textSecondary]="detailTheme().textSecondary" />
+      </section>
+      } @else if (tab() === 'evolution') {
+      <section class="pokemon-detail-page__tab-content">
+        <app-pokemon-evolution [evolutionChain]="evolutionChain()" [pokemon]="p" />
       </section>
       }
     </div>

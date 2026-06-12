@@ -1,5 +1,4 @@
 .pokemon-detail-page {
-  
   height: 90vh;
   display: flex;
   flex-direction: column;
@@ -16,14 +15,12 @@
   width: 85%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.8fr 1fr;
+  grid-template-columns: 6fr 4fr;
 }
 
 .pokemon-detail-page__header {
   display: flex;
   flex-direction: column;
-  position: relative;
-  top: 10vh;
 }
 
 .pokemon-detail-page__id {
@@ -51,8 +48,9 @@
   width: fit-content;
   font-size: 108px;
   color: var(--detail-text-primary);
-  position: relative;
+  position: absolute;
   left: 4vh;
+  top: 6vh;
 }
 
 .pokemon-detail-page__info {
@@ -60,8 +58,6 @@
   display: flex;
   align-items: center;
   gap: 16%;
-  position: relative;
-  bottom: 10vh;
 }
 
 .pokemon-detail-page__info-items {
@@ -78,10 +74,13 @@
 
 .pokemon-detail-page__info-item {
   color: var(--detail-text-secondary);
+  text-wrap: nowrap;
 }
 
 .pokemon-detail-page__image {
-  height: 62vh;
+  //height: 62vh;
+  //width: 28.8vw;
+  width: 394px;
   object-fit: cover;
   z-index: 1;
   cursor: pointer;
@@ -155,70 +154,7 @@
   gap: 1rem;
   height: 60vh;
   width: 100%;
-}
-
-.pokemon-detail-page__tab-content-versions-nav {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  width: 100%;
-}
-
-.pokemon-detail-page__tab-content-versions {
-  display: flex;
-  flex: 1;
-  min-width: 0;
-  gap: 1rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-.pokemon-detail-page__tab-content-versions-item {
-  cursor: pointer;
-  color: var(--detail-text-primary);
-  font-size: 16px;
-  width: fit-content;
-  text-transform: uppercase;
-  text-wrap: nowrap;
-
-  &:hover {
-    color: var(--detail-text-secondary);
-  }
-}
-
-.pokemon-detail-page__tab-content-versions-item.active {
-  color: var(--detail-text-secondary);
-  font-weight: 600;
-}
-
-.pokemon-detail-page__tab-content-versions-item--region {
-  color: var(--detail-text-primary);
-}
-
-.pokemon-detail-page__tab-content-versions-previous,
-.pokemon-detail-page__tab-content-versions-next {
-  flex-shrink: 0;
-  border: none;
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  color: var(--detail-text-primary);
-  font-size: 16px;
-  line-height: 1;
-
-  &:hover {
-    color: var(--detail-text-secondary);
-  }
-}
-
-.pokemon-detail-page__tab-content-description {
-  font-size: 22px;
-  color: var(--detail-text-secondary);
-  font-weight: 400;
+  overflow-y: auto;
 }
 
 /* ID Pokedex Scroll */
@@ -286,4 +222,39 @@
 .pokemon-detail-page__id-scroll-item.active {
   color: var(--detail-text-secondary);
   font-weight: 600;
+}
+
+@media (max-width: 1080px) {
+  .pokemon-detail-page__name_japanese {
+    font-size: 92px;
+  }
+
+  .pokemon-detail-page__image {
+    width: 340px;
+  }
+
+  .pokemon-detail-page__info-items {
+    height: 100%;
+  }
+}
+
+@media (max-width: 940px) {
+  .pokemon-detail-page {
+    height: auto;
+    min-height: 90vh;
+  }
+
+  .pokemon-detail-page__container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .pokemon-detail-page__tabs {
+    align-items: center;
+  }
+
+  .pokemon-detail-page__tab-content {
+    height: auto;
+    min-height: 400px;
+  }
 }

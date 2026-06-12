@@ -25,7 +25,6 @@ import {
 import {
   formatPokemonDisplayName,
   formatPokemonNameToJapanese,
-  resolvePokemonGeneration
 } from '../../../../shared/helpers/pokemon-name.helper';
 import { getPrimaryTypeName } from '../../../../shared/helpers/pokemon-type.helper';
 import { PokemonTypeThemeService } from '../../../../core/theme/pokemon-type-theme.service';
@@ -34,7 +33,6 @@ import { PokemonIdPipe } from '../../../../shared/pipes/pokemon-id.pipe';
 import { PokemonHeightPipe } from '../../../../shared/pipes/pokemon-height.pipe';
 import { PokemonWeightPipe } from '../../../../shared/pipes/pokemon-weight.pipe';
 import { NgClass } from '@angular/common';
-import { SpeciesMapper } from '../../../../data/api/mappers/species.mapper';
 import { TranslationService } from '../../../../core/i18n/translation.service';
 import {
   AppRoutes,
@@ -46,6 +44,7 @@ import { LoadingStateComponent } from '../../../../shared/components/loading-sta
 import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PokemonEvolutionComponent } from '../../components/pokemon-evolution/pokemon-evolution.component';
+import { PokemonAboutComponent } from '../../components/pokemon-about/pokemon-about.component';
 
 @Component({
   selector: 'app-pokemon-detail-page',
@@ -56,6 +55,7 @@ import { PokemonEvolutionComponent } from '../../components/pokemon-evolution/po
     PokemonTypesComponent,
     PokemonStatsComponent,
     PokemonEvolutionComponent,
+    PokemonAboutComponent,
     TranslatePipe,
     ImgFallbackDirective,
     PokemonIdPipe,
@@ -73,17 +73,13 @@ export class PokemonDetailPageComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
   private readonly facade = inject(PokemonDetailFacadeService);
   private readonly typeTheme = inject(PokemonTypeThemeService);
-  private readonly speciesMapper = inject(SpeciesMapper);
   private readonly translation = inject(TranslationService);
-  private readonly versionsScrollRef = viewChild<ElementRef<HTMLDivElement>>('versionsScroll');
   private readonly idScrollRef = viewChild<ElementRef<HTMLDivElement>>('idScroll');
   private readonly pokemonImageRef = viewChild<ElementRef<HTMLImageElement>>('pokemonImage');
   readonly pokemon = signal<PokemonApi | null>(null);
   readonly pokemonSpecies = signal<PokemonSpeciesApi | null>(null);
   readonly evolutionChain = signal<EvolutionChainApi | null>(null);
-  readonly tab = signal<'about' | 'stats' | 'evolution'>('about');  
-  /** Selected game version slug (e.g. "red"). Null = default entry for current language. */
-  readonly selectedVersion = signal<{ version: string; flavor_text: string } | null>(null);
+  readonly tab = signal<'about' | 'stats' | 'evolution'>('about');
   readonly loading = signal(true);
   readonly error = signal(false);
   readonly errorKey = signal<string | null>(null);
@@ -107,9 +103,6 @@ export class PokemonDetailPageComponent implements OnInit, OnDestroy {
   readonly japaneseName = computed(() =>
     formatPokemonNameToJapanese(this.pokemonSpecies()?.names ?? []),
   );
-  readonly generation = computed(() =>
-    resolvePokemonGeneration(this.pokemonSpecies()?.generation?.name ?? ''),
-  );
   readonly primaryType = computed(() => getPrimaryTypeName(this.pokemon()?.types ?? []));
 
   readonly pokemonStats = computed(() =>
@@ -118,22 +111,6 @@ export class PokemonDetailPageComponent implements OnInit, OnDestroy {
       baseValue: slot.base_stat,
     })),
   );
-
-  readonly versionDescriptions = computed(() => {
-    this.translation.language();
-    this.translation.revision();
-    return this.speciesMapper.extractVersions(this.pokemonSpecies());
-  });
-
-  readonly versionDescription = computed(() => {
-    this.translation.language();
-    this.translation.revision();
-    const species = this.pokemonSpecies();
-    const { version } = this.selectedVersion() ?? {};
-    return version
-      ? this.speciesMapper.extractDescription(species, version)
-      : this.speciesMapper.extractDescription(species);
-  });
 
   /** Type theme tokens — edit values in pokemon-type-theme.const.ts */
   readonly detailTheme = computed(() => {
@@ -172,9 +149,12 @@ export class PokemonDetailPageComponent implements OnInit, OnDestroy {
 
     effect(() => {
       const currentId = this.pokemon()?.id;
+
       if (!currentId) {
         return;
       }
+      
+      this.tab.set('about');
 
       queueMicrotask(() => {
         const container = this.idScrollRef()?.nativeElement;
@@ -190,9 +170,9 @@ export class PokemonDetailPageComponent implements OnInit, OnDestroy {
         map((params) => params.get('idOrName') ?? ''),
         distinctUntilChanged(),
       )
-      .subscribe((idOrName) => {
+      .subscribe((idOrName) => {        
         this.loadPokemonDetail(idOrName);
-        this.loadPokemonSpecies(idOrName);        
+        this.loadPokemonSpecies(idOrName);      
       });
   }
 
@@ -202,21 +182,6 @@ export class PokemonDetailPageComponent implements OnInit, OnDestroy {
 
   setTab(tab: 'about' | 'stats' | 'evolution'): void {
     this.tab.set(tab);
-  }
-
-  setVersionDescription(version: string, flavor_text: string): void {
-    this.selectedVersion.set({ version, flavor_text });
-  }
-
-  /** Scrolls the version list horizontally (for users without a trackpad). */
-  scrollVersions(direction: -1 | 1): void {
-    const el = this.versionsScrollRef()?.nativeElement;
-    if (!el) {
-      return;
-    }
-
-    const scrollAmount = Math.max(el.clientWidth * 0.6, 120);
-    el.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
   }
 
   scrollId(direction: -1 | 1): void {
@@ -232,32 +197,6 @@ export class PokemonDetailPageComponent implements OnInit, OnDestroy {
   navigateToId(id: number): void {
     this.router.navigateByUrl(AppRoutes.pokemonDetail(id));
   }
-  // setPreviousVersion(): void {
-  //   const versions = this.versionDescriptions();
-  //   const currentIndex = versions.findIndex((v) => v.version === this.selectedVersion()?.version);
-  //
-  //   for (let i = currentIndex - 1; i >= 0; i--) {
-  //     if (this.selectedVersion()?.flavor_text !== versions[i].flavor_text) {
-  //       this.selectedVersion.set(versions[i]);
-  //       return;
-  //     }
-  //   }
-  //
-  //   this.selectedVersion.set(versions[0]);
-  // }
-  //
-  // setNextVersion(): void {
-  //   const versions = this.versionDescriptions();
-  //   const currentIndex = versions.findIndex((v) => v.version === this.selectedVersion()?.version);
-  //
-  //   for (let i = currentIndex + 1; i < versions.length; i++) {
-  //     if (this.selectedVersion()?.flavor_text !== versions[i].flavor_text) {
-  //       this.selectedVersion.set(versions[i]);
-  //       return;
-  //     }
-  //   }
-  // }
-
 
   playSound(): void {
     this.triggerImagePop();
@@ -305,16 +244,15 @@ export class PokemonDetailPageComponent implements OnInit, OnDestroy {
     this.facade.loadPokemonSpecies(idOrName).subscribe({
       next: (species: PokemonSpeciesApi | null) => {
         this.pokemonSpecies.set(species);
-        this.selectedVersion.set(null);
         this.loadPokemonEvolution(this.pokemonSpecies()?.evolution_chain?.url ?? '');
-      },  
+      },
     });
   }
 
   private loadPokemonEvolution(url: string): void {
     this.facade.loadPokemonEvolution(url).subscribe({
       next: (evolution: EvolutionChainApi | null) => {
-        this.evolutionChain.set(evolution);      
+        this.evolutionChain.set(evolution);
       },
     });
   }

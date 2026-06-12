@@ -3,7 +3,6 @@ import { map, Observable, switchMap, of } from 'rxjs';
 import { CacheService } from '../../../core/cache/cache.service';
 import { CacheKeys } from '../../../shared/constants';
 import { EvolutionApiService, PokemonApiService, SpeciesApiService } from '../../../data/services';
-import { PokemonMapper } from '../../../data/api/mappers';
 import { EvolutionChainApi, PokemonApi, PokemonSpeciesApi } from '../../../data/api/interfaces';
 
 /** Orchestrates pokemon, species, and evolution data for the detail page. */
@@ -12,8 +11,7 @@ export class PokemonDetailFacadeService {
   private readonly api = inject(PokemonApiService);
   private readonly speciesApi = inject(SpeciesApiService);
   private readonly evolutionApi = inject(EvolutionApiService);
-  private readonly cache = inject(CacheService);
-  private readonly mapper = inject(PokemonMapper);
+  private readonly cache = inject(CacheService);  
 
   loadPokemonDetail(idOrName: string | number): Observable<PokemonApi | null> {
     const cacheKey = CacheKeys.pokemonDetail(idOrName);

@@ -5,8 +5,10 @@
   </div>
   <div class="pokemon-card-info">
     <div class="name-container">
-      <h3 class="pokemon-card-name">{{ displayName() }}</h3>
+      <app-favorite-toggle [pokemonId]="pokemon().id"  />
+      <h3 class="pokemon-card-name">{{ displayName() }}</h3>      
     </div>
+
     <app-pokemon-types [types]="pokemon().types" />
   </div>
 </article>

@@ -13,10 +13,12 @@ import { TranslatePipe } from '../../pipes/translate.pipe';
 export class PokemonSearchComponent {
   readonly placeholderKey = input<string>('pokemon.search.placeholder');
   readonly search = output<string>();
+  readonly isFavorites = input<boolean>(false);
+  readonly searchQuery = input<string>('');
 
   query = '';
 
-  onSearch(): void {
+  onSearch(): void {    
     this.search.emit(this.query.trim());
   }
 }

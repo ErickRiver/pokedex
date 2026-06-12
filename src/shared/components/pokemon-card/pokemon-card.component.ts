@@ -6,11 +6,12 @@ import { PokemonTypesComponent } from '../pokemon-types/pokemon-types.component'
 import { PokemonApi } from '../../../data/api/interfaces';
 import { resolveOfficialArtworkUrl } from '../../helpers/pokemon-url.helper';
 import { formatPokemonDisplayName } from '../../helpers/pokemon-name.helper';
+import { FavoriteToggleComponent } from '../favorite-toggle/favorite-toggle.component';
 
 @Component({
   selector: 'app-pokemon-card',
   standalone: true,
-  imports: [RouterLink, PokemonIdPipe, ImgFallbackDirective, PokemonTypesComponent],
+  imports: [RouterLink, PokemonIdPipe, ImgFallbackDirective, PokemonTypesComponent, FavoriteToggleComponent],
   templateUrl: './pokemon-card.component.html',
   styleUrl: './pokemon-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

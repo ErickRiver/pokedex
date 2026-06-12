@@ -1,10 +1,10 @@
 <section class="favorites-list-page">
-  <h1>{{ 'favorites.list.title' | translate }}</h1>
-  <div class="favorites-list-page__grid">
-    @for (pokemon of favoritePokemon; track pokemon.id) {
-      <app-pokemon-card [pokemon]="pokemon" />
-    } @empty {
-      <p>{{ 'favorites.list.empty' | translate }}</p>
-    }
+  <div class="favorites-list-page__search-container">
+    <app-pokemon-search [isFavorites]="true" (search)="onSearch($event)" />
+    <p class="favorites-list-page__count">{{ 'favorites.list.title' | translate }}: {{ favoriteCount }} </p>
   </div>
+
+  <app-pokemon-list [isFavorites]="true" [searchQuery]="searchQuery()" />
+
+  <img [src]="pokeballStarImage" alt="pokeball" class="favorites-list-page__pokeball" />
 </section>

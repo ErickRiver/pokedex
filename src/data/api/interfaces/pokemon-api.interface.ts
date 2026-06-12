@@ -24,6 +24,26 @@ export interface PokemonSpritesApi {
       front_default: string | null;
     };
   };
+
+  versions: PokemonVersionsApi;
+}
+
+export interface PokemonVersionsApi {
+  "generation-vii": GenerationVII;
+  "generation-viii": GenerationVIII;
+}
+
+export interface GenerationVII {
+  icons: SpriteSetApi;
+}
+
+export interface GenerationVIII {
+  icons: SpriteSetApi;
+}
+
+export interface SpriteSetApi {
+  front_default: string | null;  
+  front_female: string | null;
 }
 
 export interface PokemonGameIndicesApi {
@@ -70,7 +90,7 @@ export interface PokemonApi {
   weight: number;
   order: number;
   base_experience: number;
-  sprites: PokemonSpritesApi;
+  sprites: PokemonSpritesApi;  
   types: PokemonTypeSlotApi[];
   stats: PokemonStatSlotApi[];
   abilities: PokemonAbilitySlotApi[];

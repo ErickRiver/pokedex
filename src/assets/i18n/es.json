@@ -68,7 +68,8 @@
     },
     "evolution": {
       "title": "Evoluciones",
-      "empty": "No hay datos de evolución disponibles."
+      "empty": "No hay datos de evolución disponibles.",
+      "loading": "Cargando datos de evolución..."
     }    
   },
   "favorites": {
@@ -76,7 +77,7 @@
     "remove": "Quitar de favoritos",
     "toggle": "Alternar favorito",
     "list": {
-      "title": "Pokémon favoritos",
+      "title": "Favoritos",
       "empty": "Aún no tienes Pokémon favoritos."
     }
   },

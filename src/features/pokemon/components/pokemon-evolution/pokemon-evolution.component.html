@@ -1,9 +1,25 @@
-<section class="pokemon-evolution">  
-  @if (evolutionTree.length > 0) {
-    @for (tree of evolutionTree; track tree) {
-      <p class="pokemon-evolution__item">{{ tree }}</p>
-    }
+<section class="pokemon-evolution">
+  @if (loading()) {
+  <p class="pokemon-evolution__state">{{ 'pokemon.evolution.loading' | translate }}</p>
   } @else {
-    <p class="pokemon-evolution__empty">{{ 'pokemon.evolution.empty' | translate }}</p>
+  @if (evolutionArray().length > 0) {
+  @for (pokemon of evolutionArray(); track pokemon) {
+  <div class="pokemon-evolution__card" [routerLink]="['/pokemon', pokemon.name]">    
+    @if (pokemon.sprites.versions['generation-vii'].icons.front_default) {
+    <img class="pokemon-evolution__image" [src]="pokemon.sprites.versions['generation-vii'].icons.front_default"
+      alt="{{ pokemon.name }}">
+    } @else {
+    <img class="pokemon-evolution__image" [src]="pokemon.sprites.versions['generation-viii'].icons.front_default"
+      alt="{{ pokemon.name }}">
+    }
+    <div class="pokemon-evolution__info">
+      <p class="pokemon-evolution__name">{{ pokemon.name }}</p>      
+      <app-pokemon-types [types]="pokemon.types" />
+    </div>
+  </div>
+  }
+  } @else {
+  <p class="pokemon-evolution__state">{{ 'pokemon.evolution.empty' | translate }}</p>
+  }
   }
 </section>

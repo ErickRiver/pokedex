@@ -12,4 +12,5 @@ import { GIFS } from '../../constants';
 })
 export class LoadingStateComponent {
   readonly GIFS = GIFS;
+  readonly title = input<string>('pokemon.list.loading');
 }

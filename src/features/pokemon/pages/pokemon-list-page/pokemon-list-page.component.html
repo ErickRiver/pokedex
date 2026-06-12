@@ -3,21 +3,7 @@
     <app-pokemon-search (search)="onSearch($event)" />
   </div>
 
-  @if (loading()) {
-  <div class="pokemon-list-page__state-container">
-    <app-loading-state />
-  </div>
-  } @else if (error()) {
-  <div class="pokemon-list-page__state-container">
-    <app-empty-state [error]="errorMessage()" />    
-  </div>
-  } @else {
-  <div class="pokemon-list-page__grid">
-    @for (pokemon of pokemonList(); track pokemon.id) {
-    <app-pokemon-card [pokemon]="pokemon" />
-    } @empty {
-    <p class="pokemon-list-page__empty">{{ 'pokemon.list.empty' | translate }}</p>
-    }
-  </div>
-  }
+  <app-pokemon-list [isFavorites]="false" />
+
+  <img [src]="pokeballImage" alt="pokeball" class="favorites-list-page__pokeball" />
 </section>

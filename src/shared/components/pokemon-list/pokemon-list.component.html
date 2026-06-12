@@ -1,0 +1,19 @@
+<section class="pokemon-list">
+  @if (loading()) {
+  <div class="pokemon-list__state-container">
+    <app-loading-state />
+  </div>
+  } @else if (error()) {
+  <div class="pokemon-list__state-container">
+    <app-empty-state [error]="errorMessage()" />    
+  </div>
+  } @else {
+  <div class="pokemon-list__grid">
+    @for (pokemon of pokemonList(); track pokemon.id) {
+    <app-pokemon-card [pokemon]="pokemon" />
+    } @empty {
+    <p class="pokemon-list__empty">{{ 'pokemon.list.empty' | translate }}</p>
+    }
+  </div>
+  }
+</section>

@@ -11,6 +11,8 @@ export class SpeciesMapper {
       return '';
     }
     
+    this.translation.language();
+    this.translation.revision();
     const entry = dto.flavor_text_entries.find((e) => e.language.name === this.translation.language() && (version ? e.version.name === version : true));
     return entry?.flavor_text.replace(/\f/g, ' ').trim() ?? '';
   }

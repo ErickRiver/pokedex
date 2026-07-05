@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ThemeService } from '../../theme/theme.service';
 import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
+import { ICONS } from '../../../shared/constants';
 
 @Component({
   selector: 'app-theme-toggle',
@@ -11,8 +12,9 @@ import { TranslatePipe } from '../../../shared/pipes/translate.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThemeToggleComponent {
-  private readonly theme = inject(ThemeService);
-
+  private readonly theme = inject(ThemeService);    
+  readonly moonIcon = ICONS.moon;
+  readonly sunIcon = ICONS.sun;
   readonly currentTheme = this.theme.theme;
 
   toggleTheme(): void {

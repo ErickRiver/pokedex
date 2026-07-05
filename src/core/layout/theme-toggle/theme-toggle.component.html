@@ -4,9 +4,11 @@
   [attr.aria-label]="'settings.theme' | translate"
   (click)="toggleTheme()"
 >
-  @if (currentTheme() === 'light') {
-  <i class="fa-solid fa-sun theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"></i>
+  @if (currentTheme() === 'light') {    
+  <!--i class="fa-solid fa-sun theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"></i-->
+  <img [src]="sunIcon" alt="Sun" width="24" />
   } @else {
-  <i class="fa-solid fa-moon theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"></i>
+  <!--i class="fa-solid fa-moon theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"></i-->
+  <img [src]="moonIcon" alt="Moon" width="24" />
   }
-</button>
+</button> 

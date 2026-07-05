@@ -1,15 +1,20 @@
+:host {
+  display: block;
+}
+
 .navbar {
   display: flex;
   align-items: center;
-  gap: 1rem;  
+  gap: 1rem;
   width: 80%;
   height: 10vh;
+  min-height: 60px;
   margin: 0 auto;
 }
 
-.navbar__logo {    
+.navbar__logo {
   color: inherit;
-  text-decoration: none;  
+  text-decoration: none;
   margin-right: 28px;
 }
 
@@ -19,8 +24,9 @@
   flex: 1;
 }
 
+
 .navbar__link {
-  color: var(--text-primary);
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -32,4 +38,112 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+.navbar__menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.navbar-sidebar__backdrop {
+  display: none;
+}
+
+.navbar-sidebar {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .navbar {
+    justify-content: space-between;
+    width: 90%;
+  }
+
+  .navbar__logo {
+    margin-right: 0;
+  }
+
+  .navbar__nav--desktop,
+  .navbar__actions--desktop {
+    display: none;
+  }
+
+  .navbar__menu-toggle {
+    display: inline-flex;
+  }
+
+  .navbar-sidebar__backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .navbar-sidebar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 101;
+    width: 280px;
+    height: 100vh;
+    padding: 5rem 1.5rem 1.5rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border-left: 1px solid var(--color-border);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .navbar-sidebar--open {
+    transform: translateX(0);
+  }
+
+  .navbar-sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .navbar-sidebar__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .navbar-sidebar__link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1.125rem;
+  }
+
+  .navbar-sidebar__link.navbar__link--active {
+    font-weight: 600;
+  }
+
+  .navbar-sidebar__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .navbar-sidebar__logo {
+    width: 128px;
+    margin: 0 auto;
+    margin-bottom: 1.5rem;
+  }
 }

@@ -6,12 +6,10 @@ const baseHref =
 export const ASSETS_BASE = `${baseHref}/assets`;
 export const ASSETS_IMAGES_BASE = `${ASSETS_BASE}/images`;
 export const ASSETS_ICONS_BASE = `${ASSETS_BASE}/icons`;
-export const ASSETS_BACKGROUNDS_BASE = `${ASSETS_BASE}/backgrounds`;
 export const ASSETS_GIFS_BASE = `${ASSETS_BASE}/gifs`;
 
 export const IMAGES = {
   logo: `${ASSETS_IMAGES_BASE}/logos/logo.png`,
-  icon_pokeball: `${ASSETS_IMAGES_BASE}/logos/pokeball.png`,
   missing_no: `${ASSETS_IMAGES_BASE}/pokemon/missing-no.png`,
   pokeball: `${ASSETS_IMAGES_BASE}/pokemon/pokeball.png`,
   pokeball_star: `${ASSETS_IMAGES_BASE}/pokemon/pokeball-star.png`,
@@ -20,7 +18,7 @@ export const IMAGES = {
 export const GIFS = {
   pikachu: `${ASSETS_GIFS_BASE}/pikachu.gif`,
   pokeball: `${ASSETS_GIFS_BASE}/pokeball.gif`,
-}
+};
 
 export const ICONS: Record<string, string> = {
   type_bug: `${ASSETS_ICONS_BASE}/types/bug.svg `,

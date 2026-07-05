@@ -2,7 +2,6 @@
 <ul class="pokemon-types">
   @for (type of types(); track type.slot) {
   <li class="pokemon-types__item pokemon-types__item--{{ type.type.name }}">
-    <!--img [src]="ICONS['type_' + type.type.name.toLowerCase()]" [alt]="type.type.name" class="pokemon-types__type-icon" /-->
     {{ typeTranslationKey(type.type.name) | translate }}
   </li>
   }

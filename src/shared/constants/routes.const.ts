@@ -1,5 +1,3 @@
 export const AppRoutes = {
-  pokemon: '/pokemon',
-  pokemonDetail: (idOrName: string | number) => `/pokemon/${idOrName}`,  
-  favorites: '/favorites',
+  pokemonDetail: (idOrName: string | number) => `/pokemon/${idOrName}`,
 } as const;

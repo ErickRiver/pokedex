@@ -1,7 +1,6 @@
 <section class="favorites-list-page">
   <div class="favorites-list-page__search-container">
     <app-pokemon-search [isFavorites]="true" (search)="onSearch($event)" />
-    <p class="favorites-list-page__count">{{ 'favorites.list.title' | translate }}: {{ favoriteCount }} </p>
   </div>
 
   <app-pokemon-list [isFavorites]="true" [searchQuery]="searchQuery()" />

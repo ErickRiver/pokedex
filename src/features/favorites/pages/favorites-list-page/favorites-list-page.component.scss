@@ -19,17 +19,15 @@
   gap: 0.5rem;
   width: 90%;
   margin: 0 auto;
-}
-
-.favorites-list-page__count {
-  font-size: 14px;
+  margin-bottom: 1rem;
 }
 
 .favorites-list-page__pokeball {
   position: fixed;
   bottom: -15%;
   right: -3%;
-  width: 26%;
+  height: 50vh;
+  
   opacity: 0.7;  
   rotate: -20deg;
 }

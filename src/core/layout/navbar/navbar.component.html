@@ -3,17 +3,58 @@
     <img [src]="IMAGES.logo" alt="Pokédex" width="92" />
   </a>
 
-  <nav class="navbar__nav">
+  <nav class="navbar__nav navbar__nav--desktop">
     <a routerLink="/pokemon" routerLinkActive="navbar__link--active" class="navbar__link">
       {{ 'nav.pokemon' | translate }}
-    </a>    
+    </a>
     <a routerLink="/favorites" routerLinkActive="navbar__link--active" class="navbar__link">
       {{ 'nav.favorites' | translate }}
     </a>
   </nav>
 
-  <div class="navbar__actions">    
+  <div class="navbar__actions navbar__actions--desktop">
     <app-language-toggle />
     <app-theme-toggle />
   </div>
+
+  <button type="button" class="navbar__menu-toggle" [attr.aria-expanded]="sidebarOpen()" aria-controls="navbar-sidebar"
+    [attr.aria-label]="(sidebarOpen() ? 'nav.closeMenu' : 'nav.openMenu') | translate" (click)="toggleSidebar()">
+    @if (sidebarOpen()) {
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    } @else {
+    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    }
+  </button>
 </header>
+
+@if (sidebarOpen()) {
+<div class="navbar-sidebar__backdrop" (click)="closeSidebar()"></div>
+}
+
+<aside id="navbar-sidebar" class="navbar-sidebar" [class.navbar-sidebar--open]="sidebarOpen()">
+  <nav class="navbar-sidebar__nav">
+    <img class="navbar-sidebar__logo" [src]="IMAGES.logo" alt="Pokédex" width="128" />
+
+    <div class="navbar-sidebar__item">
+      <img class="navbar-sidebar__icon" [src]="IMAGES.pokeball" alt="Pokédex" width="28" />
+      <a routerLink="/pokemon" routerLinkActive="navbar__link--active" class="navbar-sidebar__link"
+        (click)="closeSidebar()">
+        {{ 'nav.pokemon' | translate }}
+      </a>
+    </div>
+
+    <div class="navbar-sidebar__item">
+      <img class="navbar-sidebar__icon" [src]="IMAGES.pokeball_star" alt="Pokédex" width="28" />
+      <a routerLink="/favorites" routerLinkActive="navbar__link--active" class="navbar-sidebar__link"
+        (click)="closeSidebar()">
+        {{ 'nav.favorites' | translate }}
+      </a>
+
+    </div>
+  </nav>
+
+  <div class="navbar-sidebar__actions">
+    <app-theme-toggle />
+    <app-language-toggle />    
+  </div>  
+</aside>

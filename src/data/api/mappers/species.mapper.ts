@@ -17,11 +17,6 @@ export class SpeciesMapper {
     return entry?.flavor_text.replace(/\f/g, ' ').trim() ?? '';
   }
 
-  extractEvolutionChainId(dto: PokemonSpeciesApi): number | null {
-    const match = dto.evolution_chain.url.match(/evolution-chain\/(\d+)\//);
-    return match ? Number(match[1]) : null;
-  }
-
   extractVersions(dto: PokemonSpeciesApi | null): { version: string; flavor_text: string }[] {
     if (!dto) {
       return [];

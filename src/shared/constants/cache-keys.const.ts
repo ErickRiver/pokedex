@@ -5,5 +5,4 @@ export const CacheKeys = {
   evolutionChain: (url: string) => `evolution:chain:${url}`,
   generationList: 'generation:list',
   generationDetail: (id: number) => `generation:detail:${id}`,
-  species: (id: number) => `species:${id}`,  
 } as const;

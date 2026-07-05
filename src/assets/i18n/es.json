@@ -4,7 +4,9 @@
   },
   "nav": {
     "pokemon": "Pokémon",
-    "favorites": "Favoritos"
+    "favorites": "Favoritos",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
   },
   "common": {
     "back": "Volver"

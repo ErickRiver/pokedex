@@ -1,0 +1,25 @@
+# Supply chain security
+minimumReleaseAge: 10080
+minimumReleaseAgeStrict: true
+minimumReleaseAgeExclude:
+  - '@angular/build'
+  - '@angular/cli'
+  - '@angular-devkit/*'
+  - '@schematics/angular'
+blockExoticSubdeps: true
+strictDepBuilds: true
+verifyDepsBeforeRun: install
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 10080
+trustPolicyExclude:
+  - chokidar
+
+# Builds required by Angular/Vite toolchain
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  lmdb: true
+  msgpackr-extract: true
+
+overrides:
+  '@babel/core': '>=7.29.7'

@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -23,23 +23,6 @@ jobs:
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
-
-      # #region agent log
-      - name: Debug — verify Pages API (hypothesis A/B)
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          HTTP_CODE=$(curl -sS -o pages-api.json -w "%{http_code}" \
-            -H "Authorization: Bearer ${GH_TOKEN}" \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages")
-          echo "Pages API status=${HTTP_CODE}"
-          cat pages-api.json 2>/dev/null || true
-          if [ "$HTTP_CODE" = "404" ]; then
-            echo "::error::Pages not enabled for Actions deploy. Enable at https://github.com/${GITHUB_REPOSITORY}/settings/pages — Source: GitHub Actions"
-            exit 1
-          fi
-      # #endregion
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -67,10 +50,36 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment-2.outputs.page_url || steps.deployment-3.outputs.page_url }}
     steps:
+      # actions/deploy-pages intermittently returns "Deployment failed, try again later."
+      # from the Pages backend even with a valid artifact (actions/deploy-pages#406).
+      # Retry up to three times before failing the job.
       - name: Deploy to GitHub Pages
         id: deployment
+        uses: actions/deploy-pages@v5
+        continue-on-error: true
+
+      - name: Back off before retry
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy to GitHub Pages (attempt 2)
+        id: deployment-2
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v5
+        continue-on-error: true
+
+      - name: Back off before final retry
+        if: steps.deployment.outcome == 'failure' && steps.deployment-2.outcome == 'failure'
+        run: sleep 60
+
+      - name: Deploy to GitHub Pages (attempt 3)
+        id: deployment-3
+        if: steps.deployment.outcome == 'failure' && steps.deployment-2.outcome == 'failure'
         uses: actions/deploy-pages@v5
